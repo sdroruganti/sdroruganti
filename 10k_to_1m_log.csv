@@ -1,4 +1,4 @@
-date,starting_balance,ending_balance,one_percent_goal,change,notes
-2025-02-20,10000,10214.82,10100,+2.1482%,Great start!
-2025-02-21,10214.82,10426.55,10201,+2.0728%,Kept up the pace with yesterday
-2025-02-22,10426.55,10459.36,10303,+0.3147%,Bumpy start but made it out positive
+date,ending_balance,one_percent_goal,change,notes
+2025-02-20,10214.82,10100,+2.1482%,Great start!
+2025-02-21,10426.55,10201,+2.0728%,Kept up the pace with yesterday
+2025-02-22,10459.36,10303,+0.3147%,Bumpy start but made it out positive
