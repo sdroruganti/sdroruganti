@@ -8,18 +8,90 @@
     <title>sdroruganti</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #555;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 
 <body>
     <header>
         <h1>$10k to $1 million</h1>
     </header>
+
     <main>
-        <p>This page will showcase the books I'm currently reading, have read, and my thoughts on each.</p>
+        <p>This page will showcase my daily 1% gain challenge logs.</p>
+
+        <h2>Daily Log</h2>
+
+        <table id="logTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Starting Balance</th>
+                    <th>Ending Balance</th>
+                    <th>1% Goal</th>
+                    <th>Change</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- CSV rows injected here -->
+            </tbody>
+        </table>
     </main>
+
     <footer>
         <p><a href="index.html">Back to Home</a></p>
     </footer>
-</body>
 
+    <script>
+        async function loadCSV() {
+            try {
+                const response = await fetch("10k_to_1m_log.csv");
+                if (!response.ok) {
+                    console.error("Fetch error:", response.status, response.statusText);
+                    return;
+                }
+
+                const text = await response.text();
+
+                // Parse CSV into lines
+                const lines = text.trim().split("\n");
+                const tbody = document.querySelector("#logTable tbody");
+
+                // Start at 1 to skip header row
+                for (let i = 1; i < lines.length; i++) {
+                    const cols = lines[i].split(",");
+
+                    const tr = document.createElement("tr");
+                    cols.forEach(col => {
+                        const td = document.createElement("td");
+                        td.textContent = col;
+                        tr.appendChild(td);
+                    });
+
+                    tbody.appendChild(tr);
+                }
+
+            } catch (err) {
+                console.error("Could not load CSV:", err);
+            }
+        }
+
+        loadCSV();
+    </script>
+
+</body>
 </html>
